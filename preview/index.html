@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>JavaScript Window Manager</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../assets/css/base.css" />
+    <link rel="stylesheet" href="../assets/css/app.css" />
+    <script src="../assets/js/jquery2.min.js"></script>
+    <script src="../assets/js/tblib/base.js"></script>
+    <script src="../assets/js/tblib/util.js"></script>
+    <script src="../assets/js/tblib/loader.js"></script>
+    <script src="../assets/js/jswm.js"></script>
+</head>
+<body>
+    <main id="desktop">
+        <nav class="task-bar bottom">
+            <button id="start-menu">
+                <div class="hamburger"></div>
+                <div class="main-menu">
+                    <ul>
+                        <li id="launch-window">
+                            <img src="../assets/res/icons/windows.svg" alt="Launch Window" />
+                            Launch Window
+                        </li>
+                    </ul>
+                </div>
+            </button>
+            <ul class="quick-select">
+
+            </ul>
+            <ul class="window-list"></ul>
+        </nav>
+        <ul class="workspaces"></ul>
+    </main>
+    <div class="templates">
+        <div id="template-window-launcher">
+            <h2>Open a window with custom parameters</h2>
+            <div class="control-row">
+                <input type="text" class="wl-window-title" placeholder="Window Title" />
+            </div>
+            <div class="control-row">
+                <input type="text" class="wl-window-icon" placeholder="Window Icon (URL)" />
+            </div>
+            <div class="control-row">
+                <textarea placeholder="Window Content (HTML)" class="wl-window-content"></textarea>
+            </div>
+            <div class="control-row">
+                <input type="number" class="wl-window-x" placeholder="X pos (px)" />
+                <input type="number" class="wl-window-y" placeholder="Y pos (px)" />
+            </div>
+            <div class="control-row">
+                <input type="number" class="wl-window-width" placeholder="Width (px)" />
+                <input type="number" class="wl-window-height" placeholder="Height (px)" />
+            </div>
+            <div class="control-row">
+                <button class="major wl-submit">Create Window</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

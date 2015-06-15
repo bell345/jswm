@@ -1,0 +1,504 @@
+* {
+    transition:0.2s all;
+}
+#desktop {
+    position:fixed;
+    top:0;
+    bottom:0;
+    width:100%;
+    height:100%;
+    background:#079;
+}
+
+/* ========== */
+/*  TASK BAR  */
+/* ========== */
+.task-bar {
+    position:absolute;
+    background:#555;
+    display:flex;
+}
+.task-bar.bottom, .task-bar.top {
+    left:0;
+    width:100%;
+    height:42px;
+    flex-flow:row nowrap;
+}
+.task-bar.left, .task-bar.right {
+    top:0;
+    height:100%;
+    width:42px;
+    flex-flow:column nowrap;
+}
+.task-bar.bottom { bottom:0; }
+.task-bar.left { left:0; }
+.task-bar.top { top:0; }
+.task-bar.right { right:0; }
+
+/* ============ */
+/*  START MENU  */
+/* ============ */
+#start-menu {
+    width:64px;
+    height:42px;
+    padding:0;
+    text-align:center;
+    line-height:0;
+}
+.task-bar.left > #start-menu, .task-bar.right > #start-menu {
+    width:42px;
+    height:64px;
+}
+
+.main-menu {
+    position:absolute;
+    margin:24px;
+    padding:8px 12px;
+    background:#eee;
+    z-index:9999;
+    transition:2s all;
+}
+.active > .main-menu {
+    transition:0.2s all;
+}
+.bottom .main-menu {
+    bottom:100%;
+    left:-100%;
+}
+.bottom > .active > .main-menu {
+    left:0;
+}
+.top .main-menu {
+    top:100%;
+    left:-100%;
+}
+.top > .active > .main-menu {
+    left:0;
+}
+.left .main-menu {
+    top:-100%;
+    left:100%;
+}
+.left > .active > .main-menu {
+    top:0;
+}
+.right .main-menu {
+    top:-100%;
+    right:100%;
+}
+.right > .active > .main-menu {
+    top:0;
+}
+
+.main-menu ul {
+    list-style-type:none;
+    display:table-row;
+}
+
+.main-menu ul li {
+    vertical-align:middle;
+    display:table-cell;
+    position:relative;
+    line-height:42px;
+    padding:4px 24px;
+    padding-left:72px;
+    font-size:20px;
+    border:2px solid transparent;
+}
+.main-menu ul li:hover {
+    background:rgba(0,0,0,0.15);
+    border:2px solid rgba(0,0,0,0.3);
+}
+
+.main-menu ul li img {
+    width:32px;
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:12px;
+    margin:auto;
+}
+
+/* ============= */
+/*  WINDOW LIST  */
+/* ============= */
+.task-bar.bottom > .window-list, .task-bar.top > .window-list {
+    flex-flow:row wrap;
+    padding:0 18px;
+    height:100%;
+}
+.task-bar.left > .window-list, .task-bar.right > .window-list {
+    flex-flow:column wrap;
+    padding:18px 0;
+    width:100%;
+}
+.window-list {
+    display:inline-block;
+    display:inline-flex;
+    align-items:stretch;
+    flex:24 1 80%;
+    overflow:auto;
+    justify-content:flex-start;
+}
+.window-list li {
+    display:inline-block;
+    position:relative;
+    background:#777;
+    list-style-type:none;
+    flex:1 1 200px;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    user-select:none;
+    color:#eee;
+    text-shadow:0 0 2px #000;
+}
+.window-list li:hover {
+    background:#aaa;
+}
+.window-list li:active {
+    background:#333;
+}
+.window-list li.active {
+    background:#da0;
+    color:#333;
+    text-shadow:0 0 2px #eee;
+}
+.window-list li.active:hover {
+    background:#fc2;
+}
+.window-list li.active:active {
+    background:#b80;
+}
+.window-list li.selected {
+    background:#444;
+    box-shadow:inset 0 0 6px #000;
+}
+.window-list li.selected:hover {
+    background:#656565;
+    box-shadow:inset 0 0 6px #222;
+}
+.window-list li.selected:active {
+    background:#333;
+    box-shadow:inset 0 0 6px #000;
+}
+.task-bar.bottom > .window-list li, .task-bar.top > .window-list li {
+    height:100%;
+    padding:6px 12px;
+    padding-left:54px;
+}
+.task-bar.left > .window-list li, .task-bar.right > .window-list li {
+    width:100%;
+    padding:12px 6px;
+    padding-top:54px;
+}
+.window-list li img {
+    position:absolute;
+    top:0;
+    left:0;
+    padding:6px 10px;
+}
+.task-bar.bottom > .window-list img, .task-bar.top > .window-list img {
+    height:100%;
+    padding:6px 10px;
+}
+.task-bar.left > .window-list img, .task-bar.right > .window-list img {
+    width:100%;
+    padding:10px 6px;
+}
+.window-list li span {
+    vertical-align:middle;
+    display:block;
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    text-align:center;
+    height:24px;
+    margin:auto;
+    white-space:nowrap;
+}
+.task-bar.left > .window-list li span, .task-bar.right > .window-list li span {
+    -webkit-transform:rotate(90deg);
+    -moz-transform:rotate(90deg);
+    transform:rotate(90deg);
+    width:100%;
+}
+
+/* ================ */
+/*  HAMBURGER ICON  */
+/* ================ */
+.hamburger {
+    width:32px;
+    height:4px;
+    background:#555;
+    display:inline-block;
+}
+.hamburger::before, .hamburger::after {
+    content:"";
+    width:100%;
+    height:100%;
+    display:block;
+    position:relative;
+    background:#555;
+    transition:0.5s all;
+}
+.hamburger::before { bottom:200%; }
+.hamburger::after { top:100%; }
+
+.active > .hamburger { background:transparent; }
+.active > .hamburger::before {
+    -webkit-transform:translateY(200%) rotate(45deg);
+    -moz-transform:translateY(200%) rotate(45deg);
+    transform:translateY(200%) rotate(45deg);
+}
+.active > .hamburger::after {
+    -webkit-transform:translateY(-200%) rotate(-45deg);
+    -moz-transform:translateY(-200%) rotate(-45deg);
+    transform:translateY(-200%) rotate(-45deg);
+}
+
+/* ========= */
+/*  WINDOWS  */
+/* ========= */
+.window {
+    position:fixed;
+    background:#eee;
+    border:1px solid #555;
+    min-width:200px;
+    min-height:120px;
+}
+.window::before {
+    content:"";
+    position:fixed;
+    background:transparent;
+    border:1px solid rgba(0, 179, 255, 0);
+}
+.window.max-ready::before {
+    top:14px;
+    bottom:14px;
+    left:14px;
+    right:14px;
+    transition:0.5s all;
+    background:rgba(0, 179, 255, 0.3);
+    border-color:rgba(0, 179, 255, 0.5);
+}
+.window.maximised {
+    top:0 !important;
+    left:0 !important;
+    width:100% !important;
+    height:100% !important;
+    max-width:100% !important;
+    max-height:100% !important;
+}
+.window.minimised {
+    -webkit-transform:scale(0);
+    -moz-transform:scale(0);
+    transform:scale(0);
+}
+.window.closing {
+    -webkit-transform:scale(0.6);
+    -moz-transform:scale(0.6);
+    transform:scale(0.6);
+    opacity:0;
+}
+.window-header {
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:38px;
+    line-height:38px;
+    background:#444;
+    box-shadow:inset 8px 8px 8px -8px #333;
+    cursor:-webkit-grab;
+    cursor:grab;
+    -webkit-user-select:none;
+    user-select:none;
+    white-space:nowrap;
+}
+.window-header.mac-style::before {
+    content:"";
+    position:absolute;
+    top:0;
+    bottom:0;
+    right:0;
+    width:32px;
+    background:linear-gradient(-90deg, #444, #444 20%, transparent);
+}
+.window-header:active {
+    cursor:-webkit-grabbing;
+    cursor:grabbing;
+}
+.window.moving .window-header:active::after,
+.window.resizing .window-resizer:active::after {
+    content:"";
+    position:absolute;
+    top:-1024px;
+    left:-1024px;
+    right:-1024px;
+    bottom:-1024px;
+    z-index:9999;
+}
+.window-icon {
+    float:left;
+    height:100%;
+    padding:8px;
+}
+.window-header.mac-style .window-icon {
+    display:none;
+}
+.window-header-buttons {
+    display:inline-block;
+    color:#eee;
+    font-size:0;
+    height:100%;
+    float:left;
+    position:absolute;
+    left:0;
+    top:0;
+    background:#444;
+    box-shadow:inset -8px 8px 8px -8px #333;
+}
+.window-header:not(.mac-style) .window-header-buttons {
+    float:right;
+    left:initial;
+    right:0;
+}
+.window-header-buttons::before {
+    content:"";
+    position:absolute;
+    right:-32px;
+    top:0;
+    bottom:0;
+    width:32px;
+    background:linear-gradient(90deg, #444, #444 20%, transparent);
+}
+.window-header:not(.mac-style) .window-header-buttons::before {
+    right:initial;
+    left:-32px;
+    background:linear-gradient(-90deg, #444, #444 20%, transparent);
+}
+.window-header-buttons div {
+    display:inline-block;
+    font-size:20px;
+    padding:0 8px;
+    height:100%;
+    width:38px;
+    text-align:center;
+    background:inherit;
+    position:relative;
+    float:left;
+    cursor:pointer;
+}
+.window-header-buttons div:hover {
+    background:#07c;
+}
+.window-header-buttons div::before,
+.window-header-buttons div::after {
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    margin:auto;
+    background:#eee;
+}
+div.window-header-close {
+    background:#a00;
+}
+div.window-header-close:hover {
+    background:#d00;
+}
+.window-header:not(.mac-style) div.window-header-close {
+    float:right;
+}
+.window-header-close::before,
+.window-header-close::after {
+    content:" ";
+    width:50%;
+    height:5%;
+}
+.window-header-close::before {
+    -webkit-transform:rotate(45deg);
+    -moz-transform:rotate(45deg);
+    transform:rotate(45deg);
+}
+.window-header-close::after {
+    -webkit-transform:rotate(-45deg);
+    -moz-transform:rotate(-45deg);
+    transform:rotate(-45deg);
+}
+.window-header-minimise::before {
+    content:" ";
+    width:50%;
+    height:5%;
+}
+.window div.window-header-maximise::before,
+.window div.window-header-maximise::after {
+    content:" ";
+    width:30%;
+    height:30%;
+    background:inherit;
+    border:2px solid #eee;
+}
+div.window.maximised div.window-header-maximise::before {
+    width:25%;
+    height:25%;
+    margin-bottom:40%;
+    margin-right:40%;
+}
+div.window.maximised div.window-header-maximise::after {
+    width:25%;
+    height:25%;
+    margin-top:40%;
+    margin-left:40%;
+}
+
+.window-title {
+    font-size:20px;
+    font-family:"Raleway", "Helvetica", sans-serif;
+    padding:0;
+    padding-left:32px;
+    display:block;
+    margin:0;
+    color:#eee;
+    text-shadow:0 0 4px #000;
+    overflow:hidden;
+    display:block;
+    height:100%;
+    margin-bottom:0;
+}
+.window-title * {
+    margin-bottom:0;
+}
+.window-header.mac-style .window-title {
+    padding-left:152px;
+}
+.window-content {
+    position:absolute;
+    top:38px;
+    left:0;
+    right:0;
+    bottom:0;
+}
+.window-body {
+    padding:18px 24px;
+    overflow:auto;
+    width:100%;
+    height:100%;
+}
+
+.window-body::-webkit-scrollbar-track {
+    margin-bottom:16px;
+}
+
+.window .window-resizer {
+    position:absolute;
+    bottom:0;
+    right:0;
+    width:16px;
+    height:16px;
+    background:url(../res/resizer.png);
+    cursor:se-resize;
+}
